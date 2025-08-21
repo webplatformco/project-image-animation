@@ -1,0 +1,128 @@
+@import url("https://talks.verou.me/api-design/css/theme.css") layer(theme);
+@import "utils.css";
+
+#cover {
+	background: url("assets/dancing-baby.gif") round;
+	color: white;
+	text-shadow: .05em .05em .5em black;
+
+	h1 {
+		div:nth-child(1),
+		div:nth-child(3) {
+			font-size: 60%;
+			font-family: var(--font-serif);
+			font-style: italic;
+			font-weight: 400;
+		}
+
+		div:nth-child(2) {
+			margin-block: .05em .2em;
+			font-size: 20vh;
+		}
+	}
+}
+
+a {
+	color: var(--color-blue);
+}
+
+#giphy iframe {
+	max-width: 100%;
+	max-height: 70vh;
+}
+
+#hamster p {
+	max-width: 780px;
+}
+
+#emoticons div {
+	max-width: 100%;
+	width: 780px;
+}
+#emoticons p {
+	width: max-content;
+	padding: 1ch;
+}
+#emoticons .d-l {
+	border-radius: 1ch 1ch 1ch 0;
+	background: #cccccc;
+}
+#emoticons .d-r {
+	margin-left: auto;
+	border-radius: 1ch 1ch 0 1ch;
+	background: #0077cc;
+	color: white;
+}
+
+@font-face {
+    font-family: "ExocetOTCECY-Medium";
+    src: url("https://db.onlinewebfonts.com/t/1241ae66485548a9fed1d3c923f27761.eot");
+    src: url("https://db.onlinewebfonts.com/t/1241ae66485548a9fed1d3c923f27761.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/1241ae66485548a9fed1d3c923f27761.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/1241ae66485548a9fed1d3c923f27761.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/1241ae66485548a9fed1d3c923f27761.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/1241ae66485548a9fed1d3c923f27761.svg#ExocetOTCECY-Medium")format("svg");
+}
+#bg div {
+	font-family: "ExocetOTCECY-Medium";
+	font-size: 2em;
+	background: url("assets/circle.gif");
+	background-size: 100% 100%;
+	color: lightblue;
+	text-shadow: blue 0px 0px 5px, white 0 0 10px;
+	padding: 1em;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	text-align: center;
+	aspect-ratio: 1/1;
+	max-width: 30%;
+	margin: auto;
+}
+
+.os-window {
+	margin: 2em 0 3em;
+	border: solid 1px var(--color-neutral-70);
+	border-radius: 5px;
+	width: 30%;
+	font-size: .8rem;
+	font-weight: 600;
+	color: var(--color-neutral-40);
+	box-shadow: .1em .2em 1.5em -1em black;
+
+	.titlebar {
+		background: radial-gradient(circle closest-side, var(--color-red) 99%, transparent 0) right,
+		            radial-gradient(circle closest-side, var(--color-yellow) 99%, transparent 0) center right 1em,
+		            radial-gradient(circle closest-side, var(--color-green) 99%, transparent 0) center right 2em;
+		background-blend-mode: multiply;
+		background-color: var(--color-neutral-95);
+		background-repeat: no-repeat;
+		background-origin: content-box;
+		background-size: .7em;
+		padding: .2rem .5rem;
+		text-align: center;
+		font-size: 1.2em;
+		border-top-left-radius: inherit;
+		border-top-right-radius: inherit;
+	}
+}
+
+#rich .os-window {
+	img {
+		width: 48px;
+	}
+
+	figure {
+		margin: 1em;
+		font-size: 1rem;
+	}
+}
+
+#rich:not(:target) ~ rte-floatpanel {
+	display: none !important;
+}
+
+h2 code {
+	font-weight: 600;
+}
+

@@ -1,0 +1,55 @@
+.pop {
+	position: absolute;
+	background: white;
+	padding: 0.5em;
+	top: 0; bottom: 0; left: 0; right: 0;
+	margin: auto !important;
+	width: 80vw;
+	height: 50vh;
+	height: min-content;
+	object-fit: contain;
+	box-shadow: 5px 5px 15px black;
+}
+
+.side-by-side {
+	display: grid;
+	gap: 1em;
+	align-items: start;
+	grid-auto-flow: column;
+}
+
+.columns {
+	columns: 2;
+
+	gap: 0 2em;
+	align-items: start;
+	grid-template-columns: repeat(var(--columns, 2), auto);
+	grid-auto-flow: column;
+}
+
+.margin-block {
+	margin-block: 1em;
+}
+
+.margin-start {
+	margin-block-start: 1em;
+}
+
+@layer theme {
+	.pros, .pros > li,
+	.cons, .cons > li {
+		list-style-type: revert-layer;
+	}
+}
+
+.pros {
+	list-style-type: "✅ ";
+}
+
+.cons {
+	list-style-type: "❌ ";
+}
+
+.block {
+	display: block;
+}

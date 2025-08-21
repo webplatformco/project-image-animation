@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:200,400,400i,700,700i');
+/* @import url('https://fonts.googleapis.com/css?family=Raleway:200,400,400i,700,700i');
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400');
 @import url("https://brick.a.ssl.fastly.net/Crimson:400,700,400i");
 
@@ -54,57 +54,4 @@ pre {
 pre.propdef { text-align: center; }
 dt { font-weight: 400; }
 dd { list-style: disc; display: list-item;}
-heading { text-align: center; }
-.pop {
-	position: absolute;
-	background: white;
-	padding: 0.5em;
-	top: 0; bottom: 0; left: 0; right: 0;
-	margin: auto !important;
-	width: 80vw;
-	height: 50vh;
-	height: min-content;
-	object-fit: contain;
-	box-shadow: 5px 5px 15px black;
-}
-
-img {
-	object-fit: contain;
-}
-
-.side-by-side {
-	display: grid;
-	gap: 1em;
-	align-items: start;
-	grid-auto-flow: column;
-}
-
-.columns {
-	columns: 2;
-
-	gap: 0 2em;
-	align-items: start;
-	grid-template-columns: repeat(var(--columns, 2), auto);
-	grid-auto-flow: column;
-}
-
-.margin-block {
-	margin-block: 1em;
-}
-
-.margin-start {
-	margin-block-start: 1em;
-}
-
-.pros {
-	list-style-type: "✅ ";
-}
-
-.cons {
-	list-style-type: "❌ ";
-}
-
-body > section {
-	max-width: max(80vw, 900px);
-	margin-inline: auto;
-}
+heading { text-align: center; } */
