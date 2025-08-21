@@ -1,0 +1,107 @@
+/* MIT License
+
+Copyright 2018–2019 Florian Rivoal
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+/* Slide structure */
+body {
+	margin: 0;
+}
+section {
+	box-sizing: border-box;
+	width: 100%;
+	min-height: 100vh;
+	overflow: hidden;
+	page-break-after: always;
+	break-after: page;
+}
+
+/* Snapping */
+:root,
+body /* should not be needed, but doesn't work in safari if missing */ {
+	/* old style */
+	-ms-scroll-snap-type: mandatory;
+	scroll-snap-type: mandatory;
+	-ms-scroll-snap-destination: 50% 0%;
+	scroll-snap-destination: 50% 0%;
+
+	/* new style */
+	scroll-snap-type: block mandatory;
+}
+section {
+	/* new style */
+	scroll-snap-align: start;
+
+	/* old style */
+	-ms-scroll-snap-coordinate: 50% 0%;
+	scroll-snap-coordinate: 50% 0%;
+}
+
+/* State management */
+:root.uses-script [data-visible-from],
+:root.uses-script [data-reveal] > *,
+[data-visible-in] {
+	visibility: hidden;
+}
+@media print {
+	[data-visible-in~=print] {
+		visibility: visible !important;
+	}
+	[data-visible-from] { visibility: visible !important; }
+	[data-reveal] > * { visibility: visible !important; }
+}
+:root:not(.uses-script) [data-visible-in~=print] { visibility: visible !important; }
+
+/* Navigation buttons */
+@media print { #nav_btns { display: none; } }
+#nav_btns {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	margin: 24px;
+	opacity: 0.3;
+}
+#nav_btns button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+	background: none;
+	border: none;
+	display: inline;
+	padding: 0;
+	border: 0;
+	margin: 0;
+	color: inherit;
+}
+#nav_btns svg {
+	width: 24px;
+	margin-right: 5px;
+}
+#nav_btns button:last-of-type svg { margin: 0 0 0 5px;}
+#nav_btns:hover { opacity: 1; }
+@media (pointer: coarse) {
+	#nav_btns svg {
+		width: 8vmin;
+		margin-right: 15px;
+	}
+}

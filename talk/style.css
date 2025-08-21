@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:200,400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400');
+@import url("https://brick.a.ssl.fastly.net/Crimson:400,700,400i");
+
+@page {
+	size: landscape;
+	margin: 0;
+}
+body {
+	font-family: "Raleway", sans-serif;
+	font-weight: 200;
+	-webkit-print-color-adjust: exact;
+	color-adjust: exact;
+	font-size: 5vmin;
+}
+:any-link { color: #3388ff; }
+section { padding: 0.75em; }
+h1, h2, h3, h4, h5, h6, p, dl, ul, ol, li, figure, pre {
+	margin-top: 0;
+	margin-bottom: 0.5em;
+	margin-block-end: 0.5em;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+}
+h1, h2, h3 {
+	font-family: "Crimson", serif;
+	font-weight: 100;
+	font-variant: small-caps;
+	margin-bottom: 0.5em;
+}
+
+pre, code, samp {
+	font-family: 'Source Code Pro', monospace;
+	font-weight: 300;
+	text-transform: initial;
+	font-variant: initial;
+}
+pre, samp {
+	font-size: 0.8em;
+}
+h1 { font-size: 2.2em; }
+h2 {
+	font-size: 1.8em;
+	font-size-adjust: 0.43;
+}
+h3 { font-size: 1.5em; }
+abbr { font-variant-numeric: lining-nums; }
+pre {
+	-webkit-tab-size: 4;
+	-moz-tab-size: 4;
+	-ms-tab-size: 4;
+	tab-size: 4;
+}
+pre.propdef { text-align: center; }
+dt { font-weight: 400; }
+dd { list-style: disc; display: list-item;}
+heading { text-align: center; }
+.pop {
+	position: absolute;
+	background: white;
+	padding: 0.5em;
+	top: 0; bottom: 0; left: 0; right: 0;
+	margin: auto !important;
+	width: 80vw;
+	height: 50vh;
+	height: min-content;
+	object-fit: contain;
+	box-shadow: 5px 5px 15px black;
+}
+
+img {
+	object-fit: contain;
+}
+
+.side-by-side {
+	display: grid;
+	gap: 1em;
+	align-items: start;
+	grid-auto-flow: column;
+}
+
+.columns {
+	columns: 2;
+
+	gap: 0 2em;
+	align-items: start;
+	grid-template-columns: repeat(var(--columns, 2), auto);
+	grid-auto-flow: column;
+}
+
+.margin-block {
+	margin-block: 1em;
+}
+
+.margin-start {
+	margin-block-start: 1em;
+}
+
+.pros {
+	list-style-type: "✅ ";
+}
+
+.cons {
+	list-style-type: "❌ ";
+}
+
+body > section {
+	max-width: max(80vw, 900px);
+	margin-inline: auto;
+}
