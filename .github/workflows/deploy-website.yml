@@ -1,0 +1,17 @@
+name: Deploy Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@4
+
+      - name: Trigger Netlify build
+        run: |
+          curl -X POST -d {} ${secrets.WEBSITE_BUILD_HOOK} # TODO: Replace with the organization's build hook secret
