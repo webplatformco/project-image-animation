@@ -46,7 +46,7 @@ Introduction {#intro}
 	Animated images (as enabled by [[GIF]], [[PNG]], [[WebP]]…) are in common use on the web.
 	By default, user agents autoplay these images,
 	which can be jarring for users,
-	especially in use cases where there are multiple images on a single page (e.g. image galleries)
+	especially in use cases where there are multiple images on a single page (e.g. image galleries),
 	and violates [[WCAG22#pause-stop-hide]].
 	Currently,
 	site authors have no control over this.
