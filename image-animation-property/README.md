@@ -13,12 +13,15 @@ Authors: Florian Rivoal, Lea Verou
     1. [Non-goals](#non-goals)
 4. [Proposed Solution](#proposed-solution)
     1. [Sample Code Snippets](#sample-code-snippets)
-    2. [Possible Extensions](#possible-extensions)
+    2. [Beyond the Basics](#beyond-the-basics)
+        1. [High-level Solution](#high-level-solution)
+        1. [Low-level Solution](#low-level-solution)
+    3. [Possible Extensions](#possible-extensions)
         1. [Control Over Iterations](#control-over-iterations)
         2. [Longhands And Further Controls](#longhands-and-further-controls)
         3. [Control Over the Paused State](#control-over-the-paused-state)
-    3. [Accessibility Considerations](#accessibility-considerations)
-    4. [Privacy Considerations](#privacy-considerations)
+    4. [Accessibility Considerations](#accessibility-considerations)
+    5. [Privacy Considerations](#privacy-considerations)
 5. [Complementary Solutions](#complementary-solutions)
     1. [Images in the `<video>` Element](#images-in-the-video-element)
     2. [What About `<img control>`?](#what-about-img-control)
@@ -130,7 +133,7 @@ The proposed solution is a css property to control animation of images.
 At its most basic version, it would take the following form:
 
 > Name: `image-animation`
-> Value: `normal` | `paused` | `running` | `controlled`
+> Value: `normal` | `paused` | `running`
 > Initial: `normal`
 > Applies to: see text
 > Inherited: yes
@@ -169,20 +172,6 @@ all values have the same effect (i.e. none).
 * **running**:
     the image animation plays,
     without synchronization with any other instance of the same image on the page.
-* **controlled**:
-	* on decorative images: same as **paused**
-	* on content images:
-        initially, the image animation does not run and the first frame is displayed.
-
-        Additionally,
-        if the underlying image actually is an animatable one,
-        the user agent provides some UI to allow the user to play and pause the animation,
-        and also makes the element focusable,
-        so that the control may be interacted with.
-        The specific control is UA defined,
-        but must not change the dimensions of the image.
-        Authors should not expect more capabilities from this control than the ability to play and pause the animation.
-        If more is desired, consider using the `<video>` element instead.
 
 ### Sample Code Snippets
 Turn off all image animations on the page:
@@ -190,34 +179,19 @@ Turn off all image animations on the page:
 :root { image-animation: paused; }
 ```
 
-Turn off autoplay on all images, showing UI controls for playback on animatable content images:
-```css
-:root { image-animation: controlled; }
-```
-Note that this can be applied just as easily by a site's author, a [web extension](https://w3c.github.io/webextensions/specification/), a user-stylesheet, without any modification to—or knowledge of—the site's markup patterns. Other uses could include a web-based email-client using this to keep animated images under control in HTML email.
-
-Same as above, in response to a [user request for reduced motion](https://drafts.csswg.org/mediaqueries-5/#prefers-reduced-motion):
-```css
-@media (prefers-reduced-motion) {
-  :root { image-animation: controlled; }
-}
-```
-
 Using some knowledge about how the site is structured,
 it is possible to fine tune the response to a preference for reduced motion,
 for instance suppressing non-essential decorative animations,
-keeping those that are informative components some UI element,
+while keeping those that are informative components some UI element.
 and offering on-demand playback for relevant parts of the content.
 ```css
 @media (prefers-reduced-motion) {
   :root { image-animation: paused; }
   .loading-indicator { immage-animmation: normal; } 
-  .funny-meme { image-animation: controlled; }
 }
 ```
 
-The browser-provided controls are not the only way to start a paused image.
-Elaborate controls can obviously be build with custom markup and script,
+Elaborate controls to start or stop a paused image can be built with custom markup and script,
 but simple cases can be done declaratively.
 For instance, you could start paused and play on hover and focus:
 ```css
@@ -244,6 +218,70 @@ Interesting effects can easily be achieved in combination with other CSS:
 }
 .carousel img:snapped { image-animation: play; }
 ```
+
+### Beyond the Basics
+
+A key limitation of the above property is encountered
+when authors want to set up a means for users
+to selectively activate paused animations:
+the author has no means to identify
+which images in the page are animated images,
+and therefore which images need to be provided
+with some a user interface of some kind
+to activate the animation.
+
+Two approaches are being considered to complement the basic design above.
+
+
+#### High-level Approach
+
+An additional value can be added to the `image-animation` property:
+* **controlled**:
+	* on decorative images: same as **paused**
+	* on content images:
+        initially, the image animation does not run and the first frame is displayed.
+
+        Additionally,
+        if the underlying image actually is an animatable one,
+        the user agent provides some UI to allow the user to play and pause the animation,
+        and also makes the element focusable,
+        so that the control may be interacted with.
+        The specific control is UA defined,
+        but must not change the dimensions of the image.
+        Authors should not expect more capabilities from this control than the ability to play and pause the animation.
+        If more is desired, consider using the `<video>` element instead.
+
+With this, some common use-cases are easily handled.
+
+Turning off autoplay on all images, showing UI controls for playback on animatable content images:
+```css
+:root { image-animation: controlled; }
+```
+Note that this can be applied just as easily by a site's author, a [web extension](https://w3c.github.io/webextensions/specification/), a user-stylesheet, without any modification to—or knowledge of—the site's markup patterns. Other uses could include a web-based email-client using this to keep animated images under control in HTML email.
+
+Same as above, in response to a [user request for reduced motion](https://drafts.csswg.org/mediaqueries-5/#prefers-reduced-motion):
+```css
+@media (prefers-reduced-motion) {
+  :root { image-animation: controlled; }
+}
+```
+
+
+#### Low-level Approach
+
+The `:animated-image` pseudo-class can be introduced,
+and represents content image elements
+where a animated image has been loaded.
+
+While authors can apply `image-animation: paused` to all animated and static images alike
+without undesirable side effects,
+UI controls to restart the animation should not be added to static images.
+This pseudo-class enables targeting only relevant images.
+
+Further, in order to facilitate building UI controls
+without having to modify the DOM to add additional markup,
+an `::overlay` pseudo-element could be added to `<img>`
+enabling generated content or other effects to be easily placed over the image.
 
 ### Possible Extensions
 
@@ -344,6 +382,12 @@ In the case of cross-origin images,
 this change of focusability does enable the host page to know
 whether the image is animatable or not,
 which is otherwise not known from the `<img>` element.
+Similarly, the `:animated-image` pseudo-class also reveals
+whether an image is animated or not,
+including cross origin.
+Either of these effects could be blocked
+by invoking CORS,
+however, this proposal chooses not to.
 We argue that this is an acceptable trade-off:
 * There is not much to be gained from this information that isn't already known.
     * Whether an image is present at the target URL at all
