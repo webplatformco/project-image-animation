@@ -4,8 +4,11 @@ Shortname: css-image-animation
 Level: 1
 Status: w3c/UD
 Work Status: exploring
-Repository: webplatformco/project-image-animation
-URL: https://webplatform.design/projects/image-animation/image-animation-property/spec/Overview.html
+Repository: w3c/csswg-drafts
+URL: https://webplatform.design/projects/image-animation/image-animation-property/spec/overview
+Metadata Include: This version off
+!Lastest Version: [https://drafts.csswg.org/css-image-animation-1/](https://drafts.csswg.org/css-image-animation-1/)
+Canonical URL: https://drafts.csswg.org/css-image-animation-1/
 Editor: Florian Rivoal, http://florian.rivoal.net
 Complain About: accidental-2119 yes, missing-example-ids yes
 Infer CSS Dfns: yes
@@ -13,7 +16,11 @@ Markup Shorthands: markdown yes, css yes
 Abstract: This CSS module proposes facilities to control the rendering of animated images.
 Status text:
 	This document is an unofficial draft,
-	written for consideration by the <a href="https://www.w3.org/groups/wg/css/">W3C CSS Working Group</a>.
+	written for consideration by the <a href="https://www.w3.org/groups/wg/css/">W3C CSS Working Group</a>,
+	which has now adopted it.
+	See [https://drafts.csswg.org/css-image-animation-1/](https://drafts.csswg.org/css-image-animation-1/)
+	for the latest copy of the Editor's Draft.
+	This copy is no longer maintained.
 	It has no official standing,
 	and does not claim to represent the consensus of any particular group.
 	It is inappropriate to cite this document as other than work in progress.
