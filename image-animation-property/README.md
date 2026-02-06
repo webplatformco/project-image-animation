@@ -2,6 +2,10 @@
 
 Authors: Florian Rivoal, Lea Verou
 
+**This file has moved, and this version is no longer maintained**
+
+Latest Version: [https://drafts.csswg.org/css-image-animation-1/explainer](https://drafts.csswg.org/css-image-animation-1/explainer)
+
 <details open>
 <summary>Contents</summary>
 
